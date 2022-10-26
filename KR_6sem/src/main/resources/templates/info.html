@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Справочная информация</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+         <style>
+            body,h1 {font-family: "Lato", sans-serif;}
+            body, html {
+                background-color: rgba(225, 197, 148, 0.98);
+                height: 100%;
+                color: #544f4f;
+                line-height: 1.8;
+            }
+            form{}
+            table {
+                border-collapse: collapse;
+                /*width: 100%;*/
+            }
+
+            td, th {
+                border: 1px solid #ceb180;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: rgba(225, 197, 148, 0.98);
+            }
+        </style>
+</head>
+<body>
+    <header th:insert="blocks/header :: header"></header>
+    <h1 align="center" style="color: rgb(117, 86, 54)">Справочная информация</h1>
+
+    <table border="1", align="center" bgcolor="#B28C65" width="70%">
+        <caption>Работники</caption>
+        <tr>
+            <th>Фамилия</th>
+            <th>Логин</th>
+            <th>Пароль</th>
+            <th>Наличие льгот</th>
+            <th>Должность</th>
+            <th>Оклад, BYN</th>
+        </tr>
+        <tr th:each="el : ${workers}">
+            <td><a th:href="'/edit/' + ${el.id}" class="w3-bar-item w3-button" th:text="${el.name}"></a></td>
+            <td th:text="${el.username}"></td>
+            <td th:text="${el.password}"></td>
+            <td th:text="${el.benefit}"></td>
+            <td th:text="${el.job}"></td>
+            <td th:text="${el.money}"></td>
+            <td th:action="'/delete/'+ ${el.id}" method="post">
+                <button class="w3-bar-item w3-button" type="submit">Удалить</button>
+            </td>
+        </tr>
+
+    </table>
+
+<!--    <table border="1", align="center" bgcolor="#B28C65" width="40%">-->
+<!--&lt;!&ndash;        bgcolor="#a4c994"&ndash;&gt;-->
+<!--        <caption>Должности</caption>-->
+<!--        <tr>-->
+<!--            <th>Должность</th>-->
+<!--            <th>Зарплата, BYN</th>-->
+<!--        </tr>-->
+<!--        <tr th:each="el : ${posts}">-->
+<!--            <td th:text="${el.job}"></td>-->
+<!--            <td th:text="${el.money}"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+    <br></br>
+    <br>
+    <table border="1", align="left" bgcolor="#B28C65" width="50%">
+        <caption>Табель учёта рабочего времени</caption>
+        <tr>
+            <th>Работник</th>
+            <th>Количество отработанных дней</th>
+            <th>Количество дней в отпуске</th>
+            <th>Количество дней на больничном</th>
+        </tr>
+        <tr th:each="el : ${tabels}">
+            <td th:text="${el.workerName}"></td>
+            <td th:text="${el.work_days}"></td>
+            <td th:text="${el.chill}"></td>
+            <td th:text="${el.ill}"></td>
+
+        </tr>
+    </table>
+    <table border="1", align="center" bgcolor="#B28C65" width="50%">
+        <caption>Заявки на отпуск от сотрудников</caption>
+        <tr>
+            <th>Работник</th>
+            <th>Месяц</th>
+        </tr>
+        <tr th:each="el : ${vacations}">
+            <td th:text="${el.workerName}"></td>
+            <td th:text="${el.month}"></td>
+        </tr>
+    </table>
+    <table border="1", align="right" bgcolor="#B28C65" width="50%">
+        <caption>Налоговые вычеты</caption>
+        <tr>
+            <th>Налог</th>
+            <th>Процент вычета</th>
+        </tr>
+        <tr th:each="el : ${taxes}">
+            <td th:text="${el.name}"></td>
+            <td th:text="${el.percent}"></td>
+        </tr>
+    </table>
+    <br></br>
+    <br></br>
+    <br></br>
+    <footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

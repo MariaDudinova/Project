@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Главная страница</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body,h1 {font-family: "Lato", sans-serif;}
+        body, html {
+            background-color: rgba(225, 197, 148, 0.98);
+            height: 100%;
+            color: #544f4f;
+            line-height: 1.8;
+        }
+        /*header{*/
+        /*    background-color: rgb(117, 86, 54);*/
+        /*    color: white;*/
+        /*}*/
+        /*footer {*/
+        /*    background-color: rgb(117, 86, 54);*/
+        /*    color: #ffffff;*/
+        /*}*/
+    </style>
+</head>
+
+<body th:align="center">
+<h1 style="color: rgb(117, 86, 54)">Заявка успешно отправлена</h1>
+<tr th:each="el : ${workers}">
+<a th:href="'/apply/'+${el.id}">Редактировать заявку</a>
+    <br></br>
+<a th:href="'/inf/'+${el.id}">Вернуться на Главную страницу</a>
+
+
+<br></br>
+<br></br>
+</body>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+ <head>
+    <title>Регистрация</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!--    <link th:href="@{/custom.css}" rel="stylesheet">-->
+    <link th:href="@{/custom.css}" rel="stylesheet">
+    <style>
+        body{
+            background-color:  rgb(117, 86, 54);
+        }
+    </style>
+
+</head>
+<body>
+<section class="forms-section">
+    <h1 class="section-title">Расчёт зарплат</h1>
+    <div class="forms">
+        <div class="form-wrapper is-active">
+    <div class="form-wrapper">
+        <button type="button" class="switcher switcher-signup">
+            Регистрация
+            <span class="underline"></span>
+        </button>
+        <form class="form form-signup" action="/reg" method="post">
+            <fieldset>
+                <legend>Пожалуйста, введите персональные данные для регистрации.</legend>
+                <div class="input-block">
+                    <label for="name">Фамилия</label>
+                    <input id="name" type="text" name="name" required>
+                </div>
+                <div class="input-block">
+                    <label for="signup-email">Логин</label>
+                    <input id="signup-email" type="email" name="username" placeholder="some@some.com" required>
+                </div>
+                <div class="input-block">
+                    <label for="signup-password">Пароль</label>
+                    <input id="signup-password" type="password" name="password" required>
+                </div >
+                <div align="center" class="input-block">
+                    <label for="ben">Наличие льгот</label>
+                    <input id="ben" name="benefit" type="checkbox">
+                </div>
+                <div class="input-block">
+                    <label for="job_id">ID Должности</label>
+                    <select id="job_id" type="text" name="job_id" required>
+                        <option value="1">Директор</option>
+                        <option value="2">Стажер</option>
+                        <option value="3">Секретарь</option>
+                        <option value="4">Начальник отдела кадров</option>
+                        <option value="5">Заместитель директора</option>
+                        <option value="6">Менеджер</option>
+                    </select>
+                </div>
+            </fieldset>
+            <button type="submit" th:href="'/info'" class="btn-signup">Продолжить</button>
+        </form>
+        </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

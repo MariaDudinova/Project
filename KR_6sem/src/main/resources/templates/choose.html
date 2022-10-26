@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор работника</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body,h1 {font-family: "Lato", sans-serif;}
+        body, html {
+
+            background-color: rgba(225, 197, 148, 0.98);
+            height: 100%;
+            color: #544f4f;
+            line-height: 1.8;
+        }
+        form{}
+        table {
+            margin-left: 15%;
+            margin-right: 8%;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid #ceb180;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(225, 197, 148, 0.98);
+        }
+    </style>
+</head>
+<header th:insert="blocks/header :: header"></header>
+<body>
+    <h1 align="center" style="color: rgb(117, 86, 54)">Выберите работника чью зарплату необходимо рассчитать</h1>
+    <table border="1", align="left" bgcolor="#B28C65" >
+        <caption>Работники</caption>
+        <tr>
+          <th align="center">Фамилия</th>
+      </tr>
+      <tr th:each="el : ${workers}">
+          <td align="center"> <a th:href="'/calc/' + ${el.id}" class="w3-bar-item w3-button" th:text="${el.name}"></a></td>
+      </tr>
+    </table>
+
+    <table border="1", align="right" bgcolor="#B28C65" width="40%">
+        <caption>Рассчитанная зарплата</caption>
+        <tr>
+            <th>Работник</th>
+            <th>Зарплата</th>
+        </tr>
+        <tr th:each="el : ${salaries}">
+            <td th:text="${el.worker_id}"></td>
+            <td th:text="${el.salary}"></td>
+        </tr>
+    </table>
+    <br></br>
+    <br></br>
+    <br></br>
+
+    </div>
+</body>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</html>

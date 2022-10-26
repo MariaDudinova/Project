@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Личный кабинет</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body,h1 {font-family: "Lato", sans-serif;}
+        body, html {
+            background-color: rgba(225, 197, 148, 0.98);
+            height: 100%;
+            color: #544f4f;
+            line-height: 1.8;
+        }
+        header{
+            background-color: rgb(117, 86, 54);
+            color: white;
+        }
+        form{}
+        table {
+            border-collapse: collapse;
+            /*width: 100%;*/
+        }
+
+        td, th {
+            border: 1px solid #ceb180;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(225, 197, 148, 0.98);
+        }
+        footer {
+            background-color: rgb(117, 86, 54);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <header class="w3-panel w3-center w3-opacity" style="padding:10px 16px">
+        <h1 class="w3-xlarge">Онлайн система</h1>
+        <h1>Расчёта зарплат</h1>
+
+        <div class="w3-padding-32">
+            <div  class="w3-bar w3-border">
+                <tr th:each="el : ${workers}">
+                <a href="/" class="w3-bar-item w3-button w3-light-grey">Выход</a>
+                <a th:href="'/inf/'+${el.id}" class="w3-bar-item w3-button">Справочная информация</a>
+                <a th:href="'/apply/'+${el.id}" class="w3-bar-item w3-button">Заявка на отпуск</a>
+                <a th:href="'/charity/'+${el.id}" class="w3-bar-item w3-button w3-light-grey">Отчисление из ЗП</a>
+
+            </div>
+        </div>
+    </header>
+</div>
+<h1 align="center" style="color: rgb(117, 86, 54)">Справочная информация</h1>
+<table border="1", align="left" bgcolor="#B28C65" width="50%">
+    <caption>Персональные данные</caption>
+    <tr>
+        <th>Фамилия</th>
+        <th>Логин</th>
+        <th>Пароль</th>
+        <th>Наличие льгот</th>
+        <th>Должность</th>
+    </tr>
+    <tr th:each="el : ${workers}">
+        <td th:text="${el.name}"></td>
+        <td th:text="${el.username}"></td>
+        <td th:text="${el.password}"></td>
+        <td th:text="${el.benefit}"></td>
+        <td th:text="${el.job}"></td>
+
+    </tr>
+
+</table>
+
+<table border="1", align="right" bgcolor="#B28C65" width="50%">
+    <caption>Расчитанная ЗП, BYN</caption>
+    <tr>
+        <th> <center>Ваша зарплата</center></th>
+    </tr>
+    <tr th:each="el : ${salary}">
+        <td th:text="${el.salary}"></td>
+    </tr>
+</table>
+<br></br>
+<br><br>
+<br><br>
+
+<table border="1", align="right" bgcolor="#B28C65" width="50%">
+    <caption>Табель учёта рабочего времени</caption>
+    <tr>
+        <th>Количество отработанных дней</th>
+        <th>Количество дней в отпуске</th>
+        <th>Количество дней на больничном</th>
+    </tr>
+    <tr th:each="el : ${tabels}">
+        <td th:text="${el.work_days}"></td>
+        <td th:text="${el.chill}"></td>
+        <td th:text="${el.ill}"></td>
+
+    </tr>
+</table>
+
+<table border="1", align="left" bgcolor="#B28C65" width="50%">
+    <caption>Налоговые вычеты</caption>
+    <tr>
+        <th>Налог</th>
+        <th>Процент вычета</th>
+    </tr>
+    <tr th:each="el : ${taxes}">
+        <td th:text="${el.name}"></td>
+        <td th:text="${el.percent}"></td>
+    </tr>
+</table>
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+</body>
+<br></br>
+
+<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top" style="padding:100px 16px">
+    <p class="col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
+
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+    </a>
+    <ul class="nav col-md-4 justify-content-end">
+        <tr th:each="el : ${workers}">
+        <li class="nav-item"><a th:href="'/inf/' + ${el.id}" class="nav-link px-2 text-muted">Справочная информация</a></li>
+        <li class="nav-item"><a th:href="'/apply/' + ${el.id}" class="nav-link px-2 text-muted">Заявка на отпуск</a></li>
+        <li class="nav-item"><a th:href="'/charity/' + ${el.id}" class="nav-link px-2 text-muted">Отчисление из ЗП</a></li>
+        <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Выход</a></li>
+    </ul>
+</footer>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body,h1 {font-family: "Lato", sans-serif;}
+        body, html {
+            background-color: rgba(225, 197, 148, 0.98);
+            height: 100%;
+            color: #544f4f;
+            line-height: 1.8;
+        }
+        form{}
+        table {
+            border-collapse: collapse;
+            /*width: 100%;*/
+        }
+        td, th {
+            border: 1px solid #ceb180;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(225, 197, 148, 0.98);
+        }
+        .button {
+            background-color: rgb(178, 139, 98);
+            padding: 5px 15px;
+            color: white;
+            transition-duration: 0.4s;
+        }
+        .button:hover {
+            background-color: rgb(162, 133, 104);
+        }
+    </style>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<h1 align="center" style="color: rgb(117, 86, 54)">Обработка информации</h1>
+
+<table border="1", align="left" bgcolor="#B28C65" width="50%">
+    <caption>Работники</caption>
+    <tr>
+        <th>ID</th>
+        <th>Фамилия</th>
+        <th>Логин</th>
+        <th>Пароль</th>
+        <th>Наличие льгот</th>
+        <th>Должность</th>
+    </tr>
+    <tr th:each="el : ${workers}">
+        <td th:text="${el.id}"></td>
+        <td th:text="${el.name}"></td>
+        <td th:text="${el.username}"></td>
+        <td th:text="${el.password}"></td>
+        <td th:text="${el.benefit}"></td>
+        <td th:text="${el.job}"></td>
+    </tr>
+
+</table>
+<br>
+<a th:href="'/sort'" class="button">Сортировать</a>
+<br></br>
+<form method="post" action="filter">
+    <label for="benefit">Введите признак для фильтрации</label>
+    <input type="checkbox" name="benefit" id="benefit" value="1">Наличие льгот<Br>
+<!--    <input class="input-block" id="benefit" name="benefit" type="text" required>-->
+    <button type="submit" class="button">Отфильтровать</button>
+</form>
+<form method="post" action="find">
+    <label for="name">Введите фамилию работника</label>
+    <input class="input-block" id="name" name="Wname" type="text">
+    <button type="submit" class="button">Поиск</button>
+</form>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
